@@ -21,10 +21,10 @@ import java.util.HashMap;
 
 public class HttpUtil {
 
-    static String baseUrl = "http://192.168.34.99:8888/herbal/";
+     private static String baseUrl  ;
 //    static String baseUrl = "http://172.16.10.241:8888/herbal/";
     public static void setUri(String url){
-        baseUrl="http://"+url+"/";
+        baseUrl="http://"+url+"/herbal/";
     }
     /**
      * Get请求

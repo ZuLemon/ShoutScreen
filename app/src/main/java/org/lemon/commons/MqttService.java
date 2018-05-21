@@ -32,6 +32,7 @@ public class MqttService extends Service {
     private static String url;
     private static String user = "";
     private static String password = "";
+    private static String topic = "";
     private static boolean hold = false;
     private boolean connect = false;
     private static int idx = 0;
@@ -61,10 +62,10 @@ public class MqttService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 //            getServer();
-        url ="tcp://192.168.34.99:61613";
-//        url = "tcp://172.16.10.241:61613";
-        user = "admin";
-        password = "herbal";
+//        url ="192.168.34.99:61613";
+////        url = "tcp://172.16.10.241:61613";
+//        user = "admin";
+//        password = "herbal";
         connect();
         new Thread() {
             @Override
@@ -131,19 +132,24 @@ public class MqttService extends Service {
     public static synchronized void connect() {
         Log.e("###", "连接");
         try {
-            String topic = "ShoutScreen";
 //            Log.e("推送服务：",url[idx]);
 //            if (url.length > 1) {
-            mqttClient = new MqttClient(url, Application.imei, new MemoryPersistence());
+            mqttClient = new MqttClient("tcp://"+url, Application.imei, new MemoryPersistence());
             options.setUserName(user);
             options.setPassword(password.toCharArray());
 //                options.setConnectionTimeout(30);
 //                options.setKeepAliveInterval(80);
 //            options.setCleanSession(true);
+            Log.e("mqttserver","tcp://"+url);
+            Log.e("user",user );
+            Log.e("password",password);
             mqttClient.connect(options);
             mqttClient.subscribe(topic, 2);
+            Log.e("topic",topic);
+
+
             mqttClient.setCallback(new Callback());
-            Log.e("connect", "success//" + url);
+            Log.e("connect", topic+"#success//" + url);
 //            new CoolToast(Application.getContext()).show("success//" + url);
             hold = true;
 //            } else {
@@ -187,5 +193,24 @@ public class MqttService extends Service {
         } catch (Exception ef) {
             ef.printStackTrace();
         }
+    }
+
+    public static void setUrl(String url) {
+        MqttService.url = url;
+    }
+
+
+
+    public static void setUser(String user) {
+        MqttService.user = user;
+    }
+
+
+    public static void setPassword(String password) {
+        MqttService.password = password;
+    }
+
+    public static void setTopic(String topic) {
+        MqttService.topic = topic;
     }
 }
