@@ -255,7 +255,7 @@ public class MainActivity extends Activity  {
                     if (0 == Integer.parseInt(String.valueOf(map.get("status")))) {
 //               new ChineseToSpeech().speech("请"+map.get("patientName") + "前来取药");
                         main_textView.setText("请 " + map.get("patientName") + " 前来取药");
-                        Application.speakChinese("请" + map.get("patientName") + "前来取药");
+                        Application.speakChinese("请  " + map.get("patientName") + "  前来取药");
                         returnData.add(map);
                         addMap(showData, map);
                         updateUI();
