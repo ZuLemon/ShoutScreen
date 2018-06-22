@@ -28,6 +28,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'org.xutils:xutils:3.5.0'
     compile 'pub.devrel:easypermissions:0.1.5'
+    compile 'com.belerweb:pinyin4j:2.5.1'
     compile 'com.alibaba:fastjson:1.2.32'
     compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.0'
     testCompile 'junit:junit:4.12'
